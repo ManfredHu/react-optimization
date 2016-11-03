@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <!--主容器id，定义myView配置的时候需要传入这个id -->
+    <div id="container">
+        <div id="app"></div>
+        <div id="mask"></div>
+    </div>
+    <!-- 用于modulejs引入以及显式定义所有用到的模块 -->
+    <script src="./module.js"></script>
+    <script type="text/javascript">
+        modulejs.config({
+            alias: {
+                "myView":     "./myView.js",
+                "inf":        "./inf.js",
+                "jquery":     "./jquery.js",
+                "app":        "./app.js",
+                "react":      "./react-addons.js", //react包含插件的版本
+                "reflux":     "./reflux.js",
+                "todoAction": "./todoAction.js",
+                "todoStore":  "./todoStore.js",
+                "todoTpl":    "../JSXtoJS/tpl.js",
+                "observe":    "./observe.js",
+                "immutable":  "./immutable.js"
+            }
+
+        });
+
+        var _mytouchConfig = {
+            "index": ['app', 'init'],
+            "containerId": "container" //主容器id
+        }
+        modulejs('myView', function(m) {
+            m.init();
+        }); //按照modulejs规范，引入myView模块，然后调用myView的init方法来初始化
+    </script>
+</body>
+
+</html>
