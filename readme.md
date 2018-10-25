@@ -321,8 +321,10 @@ console.log(map2.get('count')); // 2
 
 这里也思考一些可能做到的变化：
 
-- 将一个组件的action/store/JSX/样式代码Style 写在**一个文件**里，这样方便修改和调用，封闭组件内部实现细节，对外只暴露action操作和store的一些get方法，这样可以修改或者是获取到组件的某些现在时刻的属性（也有同学是直接封装为一个对象，通过对象暴露其store,action）
+- 将一个组件的action/store/JSX/样式代码Style 写在**一个文件**里，这样方便修改和调用，封闭组件内部实现细节，对外只暴露action操作和store的一些get方法，这样可以修改或者是获取到组件的某些现在时刻的属性（也有同学是直接封装为一个对象，通过对象暴露其store,action）。
 - 组件共享或依赖的数据，应在公共父级的store或独立成一个单独的部分，然后采用props传递的形式或从独立的store里面取数据
+
+> ps: 已入坑Vue，确实做到了action/store/JSX/样式代码Style 写在**一个文件**里
 
 ## License
 [MIT](LICENSE). Copyright (c) 2016 ManfredHu.
