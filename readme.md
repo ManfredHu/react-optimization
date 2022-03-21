@@ -11,7 +11,7 @@ React的优点有很多，现在很多应用都接入React这个框架。
 ## React对重排和重绘的提高
 雅虎性能优化比较重要的点，老司机自行忽略。
 如下图，HTML被浏览器解析为DOM树，CSS代码加载进来解析为样式结构体，两者关联组成渲染树，之后浏览器把渲染树绘制出来就是我们看到的网页了。这里如果我们对DOM树或者样式结构体做一些操作，如删除某个节点，样式改为隐藏（display:none）等等，会触发重排进而导致重绘。
-![重排与重绘](http://www.manfredhu.com/images/github/repaintAndReflow.JPG)
+![重排与重绘](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/repaintAndReflow.JPG)
 
 ### 触发重排的条件
 - DOM元素的数量属性变化
@@ -28,7 +28,7 @@ React的优点有很多，现在很多应用都接入React这个框架。
 ## 为什么引入Reflux？
 上面说了React在MVVM结构下只起View的作用，那么除了View，MVVM下还有Model，ViewModel。
 而纯粹的View，会让整个逻辑耦合在一层下，数据也需要层层传递，不方便控制和复用。
-![组件化遇到的问题](http://www.manfredhu.com/images/github/componentProblem.JPG)
+![组件化遇到的问题](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/componentProblem.JPG)
 
 故业内也有一堆的分层框架——如最早的flux，现在部门在用的Reflux，以及Redux。
 对比Redux，Reflux更容易理解和上手——这也是现状，学习成本越低，接入现有业务就越容易。
@@ -39,7 +39,7 @@ reflux的架构非常简单，就是三部分
 1. Action 理解为一个命令或者动作，通过它来向组件发出"指令"
 2. Store 为ViewModel部分，组件的一些状态属性会存储在这里
 3. View Component 为组件模板
-![reflux的架构](http://www.manfredhu.com/images/github/reflux.JPG)
+![reflux的架构](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/reflux.JPG)
 
 所以Reflux只是让我们，更好的去操作组件，通过一个Action命令，叫组件去干嘛，组件自己通过写好的代码，对命令做出反应(变化为不同的state状态)。
 
@@ -79,7 +79,7 @@ shouldComponentUpdate是在React组件更新的生命周期中，用于判断组
 - 返回true，则进入React的Virtual DOM比较过程
 - 返回false，则跳过Virtual DOM比较与渲染等过程
 
-![shouldComponentUpdate和Virtual DOM Equal compare](http://www.manfredhu.com/images/github/SCUAndvDOMEqual.JPG)
+![shouldComponentUpdate和Virtual DOM Equal compare](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/SCUAndvDOMEqual.JPG)
 
 如上图，这是一棵React Virtual DOM的树。
 
@@ -143,7 +143,7 @@ shouldComponentUpdate是在React组件更新的生命周期中，用于判断组
 
 我们知道特别是在移动端，CPU和内存的资源显得尤为稀缺（大概只能占用正常CPU和内存的10%，微信手Q等可能会因为友商系统对应用程序的优先级设计使这个限制略有提高——我说的就是小米哈哈哈），所以这样说来，性能这一块在移动手机web显得非常非常重要。
 
-![50ms渲染一次，重复渲染200次的截图](http://www.manfredhu.com/images/github/1basicDemo.png)
+![50ms渲染一次，重复渲染200次的截图](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/1basicDemo.png)
 
 ## 2.Perl
 Perl是react-addons带来的性能分析工具，这里的perfDemo是结合Chrome插件的例子。
@@ -156,7 +156,7 @@ Perl是react-addons带来的性能分析工具，这里的perfDemo是结合Chrom
 这里的wasted time就是在做属性没变化的重复渲染的过程，可以优化。
 **用法与Chrome开发工具的TimeLine用法类似，点击start开始记录，后点击stop结束**
 
-![50ms渲染一次，重复渲染200次的截图](http://www.manfredhu.com/images/github/2perfDemo.png)
+![50ms渲染一次，重复渲染200次的截图](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/2perfDemo.png)
 
 ## 3.PureRenderMixin
 一个简单的通用优化工具，通过**浅对比(shallowCompare)**方法对比新旧两个组件的状态，达到减少重复渲染的目的。
@@ -234,7 +234,7 @@ function shallowEqual(objA, objB) {
 所以PureRenderMixin这个插件，只能比较state和props为基本类型的部分。
 如果有更加深层次的store数据嵌套，就要借助于update插件或者Immutablejs来深拷贝store的数据另存一份了。
 
-![50ms渲染一次，重复渲染200次的截图，引入pureRenderMixin](http://www.manfredhu.com/images/github/3pureRenderMixinDemo.png)
+![50ms渲染一次，重复渲染200次的截图，引入pureRenderMixin](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/3pureRenderMixinDemo.png)
 
 ## 4.用update优化（也称Immutable Helper）
 update是addons里面的一个方法，旨在对拷贝对象复杂的过程来做一些语法上的优化，具体可以看[react官方文档](https://facebook.github.io/react/docs/update.html)
@@ -274,7 +274,7 @@ var newData = update(myData, {
 
 但是由Timeline的观察来看，复制对象属性的性能远比刷新一个大组件的性能高。
 
-![50ms渲染一次，重复渲染200次的截图，引入了update模块](http://www.manfredhu.com/images/github/4updateDemo.png)
+![50ms渲染一次，重复渲染200次的截图，引入了update模块](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/4updateDemo.png)
 
 ## 5.Immutablejs
 Immutable.js是Facebook为解决数据持久化而独立出来的一个库，传统的，比如我们有
@@ -303,10 +303,10 @@ console.log(map2.get('count')); // 2
 引入Immutable.js，需要对现有的业务代码进行改动，通常是对tpl和store两部分进行操作，初始化数据的时候生成一个Immutable的数据类型，之后每次get,set操作都会返回一个共享的新的对象。
 
 50ms渲染一次，重复渲染200次的截图，引入了immutable用了其set方法：
-![50ms渲染一次，重复渲染200次的截图，引入了immutable用了其set方法](http://www.manfredhu.com/images/github/5immutable_set.png)
+![50ms渲染一次，重复渲染200次的截图，引入了immutable用了其set方法](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/5immutable_set.png)
 
 50ms渲染一次，重复渲染200次的截图，引入了immutable用了其update方法：
-![50ms渲染一次，重复渲染200次的截图，引入了immutable用了其update方法](http://www.manfredhu.com/images/github/5immutableDemo_update.png)
+![50ms渲染一次，重复渲染200次的截图，引入了immutable用了其update方法](https://manfredhu-1252588796.cos.ap-guangzhou.myqcloud.com/uPic/github/5immutableDemo_update.png)
 
 ## 6.seamless-immutable && Observejs
 一个是immutable的阉割版，一个是AlloyTeam推的。
